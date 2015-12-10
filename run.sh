@@ -1,17 +1,17 @@
 #!/bin/bash -e
 
-TOPDIR=$(readlink -f $(dirname "$0")/..)
-DEPLOYDIR=${TOPDIR}/mkdeploy
-cd "$TOPDIR"
+SCRIPTSDIR=$(readlink -f $(dirname "$0"))
+cd "$SCRIPTSDIR"
 
-REPODIR=~/aptrepo
+REPODIR=~/aptrepo/repo
+LOGDIR=~/aptrepo/log
 GPGDIR=~/aptrepo-keys
 IMAGE=mkdeploy
 CONTAINER=mkdeploy
 CMD=$1; shift || true
 
 build() {
-    docker build -t ${IMAGE} ${DEPLOYDIR}/docker
+    docker build -t ${IMAGE} ${SCRIPTSDIR}/docker
 }
 
 run() {
@@ -21,9 +21,9 @@ run() {
     else
 	docker run \
 	    -d \
-	    -v ${TOPDIR}:/opt/mkdocker:ro \
-	    -v ${TOPDIR}/log:/opt/mkdocker/log \
-	    -v ${REPODIR}:/opt/aptrepo \
+	    -v ${SCRIPTSDIR}:/opt/mkdeploy/scripts:ro \
+	    -v ${REPODIR}:/opt/mkdeploy/repo \
+	    -v ${LOGDIR}:/opt/mkdeploy/log \
 	    -p 2222:22 \
 	    -p 80:80 \
 	    --name=${CONTAINER} \
@@ -63,40 +63,40 @@ init() {
     if test "${MKDOCKER_CONTAINER}" != 1; then
 	# Run outside of container
 	docker run -it --rm \
-	    -v ${TOPDIR}:/opt/mkdocker:ro \
-	    -v ${REPODIR}:/opt/aptrepo \
-	    -v ${GPGDIR}:/opt/aptrepo-keys \
-	    ${IMAGE} /opt/mkdocker/mkdeploy/run.sh init
+	    -v ${SCRIPTSDIR}:/opt/mkdeploy/scripts:ro \
+	    -v ${REPODIR}:/opt/mkdeploy/repo \
+	    -v ${GPGDIR}:/opt/mkdeploy/keys \
+	    ${IMAGE} /opt/mkdeploy/scripts/run.sh init
     else
 	# Run inside container
 
-	# Fix directory ownership
-	chown aptrepo:aptrepo /opt/aptrepo
+	# Fix repo directory ownership
+	chown aptrepo:aptrepo /opt/mkdeploy/repo
 
 	# Create log directory for supervisord, rsyslogd, apache2
-	mkdir -p /opt/aptrepo/log
-	chown aptrepo:aptrepo /opt/aptrepo/log
+	mkdir -p /opt/mkdeploy/log
+	chown aptrepo:aptrepo /opt/mkdeploy/log
 
 	# Set up SSH keys
-	if ! test -d /opt/aptrepo/.ssh; then
-	    install -d -o aptrepo -g aptrepo -m 700 /opt/aptrepo/.ssh
-	    ssh-keygen -N '' -C 'mkdeploy' -f /opt/aptrepo/.ssh/id_rsa
-	    cp /opt/aptrepo/.ssh/id_rsa.pub /opt/aptrepo/.ssh/authorized_keys
-	    chown -R aptrepo:aptrepo /opt/aptrepo/.ssh
+	if ! test -d /opt/mkdeploy/.ssh; then
+	    install -d -o aptrepo -g aptrepo -m 700 /opt/mkdeploy/.ssh
+	    ssh-keygen -N '' -C 'mkdeploy' -f /opt/mkdeploy/.ssh/id_rsa
+	    cp /opt/mkdeploy/.ssh/id_rsa.pub /opt/mkdeploy/.ssh/authorized_keys
+	    chown -R aptrepo:aptrepo /opt/mkdeploy/.ssh
 	fi
 
 	# Set up GNUPGHOME
-	chmod 700 /opt/aptrepo-keys
-	if ! test -f /opt/aptrepo-keys/secring.gpg; then
-	    env GNUPGHOME=/opt/aptrepo-keys gpg --gen-key
+	chmod 700 /opt/mkdeploy/keys
+	if ! test -f /opt/mkdeploy/keys/secring.gpg; then
+	    env GNUPGHOME=/opt/mkdeploy/keys gpg --gen-key
 	fi
-	chown -R aptrepo:aptrepo /opt/aptrepo-keys
+	chown -R aptrepo:aptrepo /opt/mkdeploy/keys
 
 	# Set up repo directory
-	if ! test -d /opt/aptrepo/repo; then
-	    install -d -o aptrepo -g aptrepo -m 755 /opt/aptrepo/repo
+	if ! test -d /opt/mkdeploy/repo; then
+	    install -d -o aptrepo -g aptrepo -m 755 /opt/mkdeploy/repo
 	fi
-	su aptrepo -c "${DEPLOYDIR}/get-ppa.sh -c all -i"
+	su aptrepo -c "${SCRIPTSDIR}/get-ppa.sh -c all -i"
     fi
 }
 
@@ -104,14 +104,14 @@ repo() {
     if test "${MKDOCKER_CONTAINER}" != 1; then
 	# Outiside container; re-run inside
 	docker run --rm \
-	    -v ${TOPDIR}:/opt/mkdocker:ro \
-	    -v ${REPODIR}:/opt/aptrepo \
-	    -v ${GPGDIR}:/opt/aptrepo-keys \
+	    -v ${SCRIPTSDIR}:/opt/mkdeploy/scripts:ro \
+	    -v ${REPODIR}:/opt/mkdeploy/repo \
+	    -v ${GPGDIR}:/opt/mkdeploy/keys \
 	    -u aptrepo:aptrepo \
-	    ${IMAGE} /opt/mkdocker/mkdeploy/run.sh repo "$@"
+	    ${IMAGE} /opt/mkdeploy/scripts/run.sh repo "$@"
     else
 	# Inside container
-	${DEPLOYDIR}/get-ppa.sh "$@"
+	${SCRIPTSDIR}/get-ppa.sh "$@"
     fi
 }
 

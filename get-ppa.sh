@@ -61,12 +61,12 @@ SCRIPTSDIR=$(readlink -f $(dirname $0))
 TEMPLATEDIR=${SCRIPTSDIR}/reprepro-templates
 
 # Where the data lives
-BASEDIR=/opt/aptrepo
+BASEDIR=/opt/mkdeploy
 REPODIR=${BASEDIR}/repo
 CONFIGDIR=$REPODIR/conf
 
 # gpg keys
-GNUPGHOME=/opt/aptrepo-keys
+GNUPGHOME=/opt/mkdeploy/keys
 
 # GPG handling
 if test -n "$GNUPGHOME"; then
