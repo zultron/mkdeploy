@@ -1,0 +1,68 @@
+#								-*-conf-*-
+####################################################
+# Machinekit package updates
+#
+# Packagecloud
+Name: packagecloud-jessie
+Method: https://packagecloud.io/machinekit/machinekit/debian
+Suite: jessie
+# Translate base component to main
+Components: main
+Architectures: amd64 i386 armhf source
+VerifyRelease: blindtrust
+DownloadListsAs: .gz
+GetInRelease: no
+FilterFormula: package (== machinekit) | Source (== machinekit)
+
+# Packagecloud
+Name: packagecloud-wheezy
+Method: https://packagecloud.io/machinekit/machinekit/debian
+Suite: wheezy
+# Translate base component to main
+Components: main
+Architectures: amd64 i386 armhf source
+VerifyRelease: blindtrust
+DownloadListsAs: .gz
+GetInRelease: no
+FilterFormula: package (== machinekit) | Source (== machinekit)
+
+####################################################
+# Machinekit deps from dxsbuild
+#
+Name: da-mkdeps-jessie
+Method: http://buildbot.dovetail-automata.com/mkdeps-repo
+Suite: jessie
+Components: main
+Architectures: amd64 i386 armhf source
+VerifyRelease: blindtrust
+DownloadListsAs: .gz
+GetInRelease: no
+
+Name: da-mkdeps-wheezy
+Method: http://buildbot.dovetail-automata.com/mkdeps-repo
+Suite: wheezy
+Components: main
+Architectures: amd64 i386 armhf source
+VerifyRelease: blindtrust
+DownloadListsAs: .gz
+GetInRelease: no
+
+####################################################
+# Jessie RT_PREEMPT kernel from backports snapshot
+#
+Name: jessie-linux-rt
+Method: http://snapshot.debian.org/archive/debian/20150908T034355Z
+Suite: jessie-backports
+Components: main
+Architectures: amd64 i386 source
+VerifyRelease: blindtrust
+DownloadListsAs: .gz
+GetInRelease: no
+FilterFormula:
+  package (== linux-headers-4.1.0-0.bpo.1-common-rt) |
+  package (== linux-headers-4.1.0-0.bpo.1-rt-amd64) | package (== linux-headers-4.1.0-0.bpo.1-rt-686-pae) |
+  package (== linux-image-4.1.0-0.bpo.1-rt-amd64) | package (== linux-image-4.1.0-0.bpo.1-rt-686-pae) |
+  package (== linux-image-4.1.0-0.bpo.1-rt-amd64-dbg) | package (== linux-image-4.1.0-0.bpo.1-rt-686-pae-dbg) |
+  package (== linux-headers-rt-amd64) | package (== linux-headers-rt-686-pae) |
+  package (== linux-image-rt-amd64) | package (== linux-image-rt-686-pae) |
+  package (== linux-image-rt-amd64-dbg) | package (== linux-image-rt-686-pae-dbg)

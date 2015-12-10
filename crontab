@@ -1,0 +1,7 @@
+# Sample crontab to check for and pull package updates every five
+# minutes
+SCRIPT=mkdocker/mkdeploy/run.sh
+LOG=aptrepo/log/repo-update.log
+MAILTO=""
+
+0-59/5 * * * * $HOME/$SCRIPT repo -U -q >> $HOME/$LOG 2>&1

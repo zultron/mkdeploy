@@ -1,0 +1,71 @@
+#								-*-conf-*-
+#
+# Machinekit reprepro configuration for final unified archive
+#
+##################################################################
+# Jessie
+#
+# Origin, Label, Description are copied into the Release file
+Origin: Dovetail Automata LLC
+Label: Machinekit
+Description: Machinekit packages for Jessie
+  From Dovetail Automata LLC
+  .
+  This archive is updated with the latest Machinekit packages from the
+  Machinekit CI system and dependency packages from the Machinekit
+  dxsbuild scripts.
+  .
+  For more information:
+  http://www.machinekit.io
+#
+# copied into Release files; stable, testing or unstable
+#
+# (the Debian kernel packaging wants anything besides 'testing' or
+# 'unstable' when the release looks like '3.8.13-1mk~@CODENAME@1'; pick
+# 'stable')
+Suite: stable
+# distribution; dists/jessie & in Release files (auto-configured)
+Codename: jessie
+# What's this for?
+#Version: 3.0
+Architectures: amd64 i386 armhf source
+# List of distribution components
+Components: main
+# What to update
+Update: packagecloud-jessie @JESSIE_MANUAL_UPDATES@
+# Sign repo
+SignWith: @PACKAGE_SIGNING_KEY@
+
+##################################################################
+# Wheezy
+#
+# Origin, Label, Description are copied into the Release file
+Origin: Dovetail Automata LLC
+Label: Machinekit
+Description: Machinekit packages for Wheezy
+  From Dovetail Automata LLC
+  .
+  This archive is updated with the latest Machinekit packages from the
+  Machinekit CI system and dependency packages from the Machinekit
+  dxsbuild scripts.
+  .
+  For more information:
+  http://www.machinekit.io
+#
+# copied into Release files; stable, testing or unstable
+#
+# (the Debian kernel packaging wants anything besides 'testing' or
+# 'unstable' when the release looks like '3.8.13-1mk~@CODENAME@1'; pick
+# 'stable')
+Suite: stable
+# distribution; dists/wheezy & in Release files (auto-configured)
+Codename: wheezy
+# What's this for?
+#Version: 3.0
+Architectures: amd64 i386 armhf source
+# List of distribution components
+Components: main
+# What to update
+Update: packagecloud-wheezy @WHEEZY_MANUAL_UPDATES@
+# Sign repo
+SignWith: @PACKAGE_SIGNING_KEY@
