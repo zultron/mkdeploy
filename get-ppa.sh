@@ -82,7 +82,7 @@ fi
 
 # Process command line args
 ORIG_ARGS="$@"
-while getopts c:luUirdkmq ARG; do
+while getopts c:luUirdkKmq ARG; do
     case $ARG in
         c) CODENAME="$OPTARG" ;;
 	u) COMMAND=checkupdates ;;
@@ -94,6 +94,7 @@ while getopts c:luUirdkmq ARG; do
 	m) RUN_MANUAL_UPDATES=true ;;
 	q) QUIET=true; REPREPRO_VERBOSE=-s ;;
 	k) COMMAND=print_gpg_key ;;
+	K) COMMAND=list_gpg_keys ;;
 	*) usage
     esac
 done
@@ -132,6 +133,10 @@ gpg-fingerprint() {
 
 print_gpg_key() {
     gpg --export --armor $(gpg-fingerprint)
+}
+
+list_gpg_keys() {
+    gpg --list-keys --with-colons
 }
 
 lock() {
