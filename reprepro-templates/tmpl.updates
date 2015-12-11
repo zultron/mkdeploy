@@ -9,7 +9,7 @@ Suite: jessie
 # Translate base component to main
 Components: main
 Architectures: amd64 i386 armhf source
-VerifyRelease: blindtrust
+VerifyRelease: C2E73424D59097AB | 37BBEE3F7AD95B3F
 DownloadListsAs: .gz
 GetInRelease: no
 FilterFormula: package (== machinekit) | Source (== machinekit)
@@ -21,7 +21,7 @@ Suite: wheezy
 # Translate base component to main
 Components: main
 Architectures: amd64 i386 armhf source
-VerifyRelease: blindtrust
+VerifyRelease: C2E73424D59097AB | 37BBEE3F7AD95B3F
 DownloadListsAs: .gz
 GetInRelease: no
 FilterFormula: package (== machinekit) | Source (== machinekit)
@@ -34,7 +34,7 @@ Method: http://buildbot.dovetail-automata.com/mkdeps-repo
 Suite: jessie
 Components: main
 Architectures: amd64 i386 armhf source
-VerifyRelease: blindtrust
+VerifyRelease: 5AF7C5195919DAEB
 DownloadListsAs: .gz
 GetInRelease: no
 
@@ -43,7 +43,7 @@ Method: http://buildbot.dovetail-automata.com/mkdeps-repo
 Suite: wheezy
 Components: main
 Architectures: amd64 i386 armhf source
-VerifyRelease: blindtrust
+VerifyRelease: 5AF7C5195919DAEB
 DownloadListsAs: .gz
 GetInRelease: no
 
@@ -55,7 +55,7 @@ Method: http://snapshot.debian.org/archive/debian/20150908T034355Z
 Suite: jessie-backports
 Components: main
 Architectures: amd64 i386 source
-VerifyRelease: blindtrust
+VerifyRelease: 7638D0442B90D010
 DownloadListsAs: .gz
 GetInRelease: no
 FilterFormula:

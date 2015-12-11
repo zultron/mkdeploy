@@ -35,6 +35,8 @@ Components: main
 Update: packagecloud-jessie @JESSIE_MANUAL_UPDATES@
 # Sign repo
 SignWith: @PACKAGE_SIGNING_KEY@
+# Log file
+Log: get-ppa-jessie
 
 ##################################################################
 # Wheezy
@@ -69,3 +71,5 @@ Components: main
 Update: packagecloud-wheezy @WHEEZY_MANUAL_UPDATES@
 # Sign repo
 SignWith: @PACKAGE_SIGNING_KEY@
+# Log file
+Log: get-ppa-wheezy

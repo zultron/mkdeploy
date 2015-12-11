@@ -5,7 +5,7 @@ cd "$SCRIPTSDIR"
 
 REPODIR=~/aptrepo/repo
 LOGDIR=~/aptrepo/log
-GPGDIR=~/aptrepo-keys
+GPGDIR=~/aptrepo/keys
 IMAGE=mkdeploy
 CONTAINER=mkdeploy
 CMD=$1; shift || true
@@ -90,6 +90,9 @@ init() {
 	if ! test -f /opt/mkdeploy/keys/secring.gpg; then
 	    env GNUPGHOME=/opt/mkdeploy/keys gpg --gen-key
 	fi
+	for k in /opt/mkdeploy/scripts/keys/*gpg.key; do
+	    env GNUPGHOME=/opt/mkdeploy/keys gpg --import $k
+	done
 	chown -R aptrepo:aptrepo /opt/mkdeploy/keys
 
 	# Set up repo directory

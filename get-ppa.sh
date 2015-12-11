@@ -64,6 +64,7 @@ TEMPLATEDIR=${SCRIPTSDIR}/reprepro-templates
 BASEDIR=/opt/mkdeploy
 REPODIR=${BASEDIR}/repo
 CONFIGDIR=$REPODIR/conf
+LOGDIR=${BASEDIR}/log
 
 # gpg keys
 GNUPGHOME=/opt/mkdeploy/keys
@@ -106,7 +107,7 @@ shift $((OPTIND-1))
 run-reprepro() {
     # reprepro command
     REPREPRO="reprepro $REPREPRO_VERBOSE $GPG_ARG -b $REPODIR \
-	--confdir +b/conf --dbdir +b/db"
+	--confdir +b/conf --dbdir +b/db --logdir $LOGDIR"
     debugmsg running:  ${REPREPRO} $*
     ${REPREPRO} "$@"
 }
