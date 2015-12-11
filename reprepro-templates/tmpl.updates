@@ -3,21 +3,9 @@
 # Machinekit package updates
 #
 # Packagecloud
-Name: packagecloud-jessie
+Name: packagecloud
 Method: https://packagecloud.io/machinekit/machinekit/debian
-Suite: jessie
-# Translate base component to main
-Components: main
-Architectures: amd64 i386 armhf source
-VerifyRelease: C2E73424D59097AB | 37BBEE3F7AD95B3F
-DownloadListsAs: .gz
-GetInRelease: yes
-FilterFormula: package (== machinekit) | Source (== machinekit)
-
-# Packagecloud
-Name: packagecloud-wheezy
-Method: https://packagecloud.io/machinekit/machinekit/debian
-Suite: wheezy
+Suite: *
 # Translate base component to main
 Components: main
 Architectures: amd64 i386 armhf source
@@ -29,18 +17,9 @@ FilterFormula: package (== machinekit) | Source (== machinekit)
 ####################################################
 # Machinekit deps from dxsbuild
 #
-Name: da-mkdeps-jessie
+Name: da-mkdeps
 Method: http://buildbot.dovetail-automata.com/mkdeps-repo
-Suite: jessie
-Components: main
-Architectures: amd64 i386 armhf source
-VerifyRelease: 5AF7C5195919DAEB
-DownloadListsAs: .gz
-GetInRelease: yes
-
-Name: da-mkdeps-wheezy
-Method: http://buildbot.dovetail-automata.com/mkdeps-repo
-Suite: wheezy
+Suite: *
 Components: main
 Architectures: amd64 i386 armhf source
 VerifyRelease: 5AF7C5195919DAEB

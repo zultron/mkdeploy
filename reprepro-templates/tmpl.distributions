@@ -32,7 +32,7 @@ Architectures: amd64 i386 armhf source
 # List of distribution components
 Components: main
 # What to update
-Update: packagecloud-jessie @JESSIE_MANUAL_UPDATES@
+Update: packagecloud @JESSIE_MANUAL_UPDATES@
 # Sign repo
 SignWith: @PACKAGE_SIGNING_KEY@
 # Log file
@@ -68,7 +68,7 @@ Architectures: amd64 i386 armhf source
 # List of distribution components
 Components: main
 # What to update
-Update: packagecloud-wheezy @WHEEZY_MANUAL_UPDATES@
+Update: packagecloud @WHEEZY_MANUAL_UPDATES@
 # Sign repo
 SignWith: @PACKAGE_SIGNING_KEY@
 # Log file
