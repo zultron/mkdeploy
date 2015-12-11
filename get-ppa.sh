@@ -44,7 +44,8 @@ usage() {
 
 # Verbose arg given to reprepro
 # This may be reduced by one '-v'
-REPREPRO_VERBOSE=-vv
+#REPREPRO_VERBOSE=-VV
+REPREPRO_VERBOSE=-v
 
 # Don't run manual updates by default
 RUN_MANUAL_UPDATES=false
