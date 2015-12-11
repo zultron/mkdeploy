@@ -11,7 +11,7 @@ Components: main
 Architectures: amd64 i386 armhf source
 VerifyRelease: C2E73424D59097AB | 37BBEE3F7AD95B3F
 DownloadListsAs: .gz
-GetInRelease: no
+GetInRelease: yes
 FilterFormula: package (== machinekit) | Source (== machinekit)
 
 # Packagecloud
@@ -23,7 +23,7 @@ Components: main
 Architectures: amd64 i386 armhf source
 VerifyRelease: C2E73424D59097AB | 37BBEE3F7AD95B3F
 DownloadListsAs: .gz
-GetInRelease: no
+GetInRelease: yes
 FilterFormula: package (== machinekit) | Source (== machinekit)
 
 ####################################################
@@ -36,7 +36,7 @@ Components: main
 Architectures: amd64 i386 armhf source
 VerifyRelease: 5AF7C5195919DAEB
 DownloadListsAs: .gz
-GetInRelease: no
+GetInRelease: yes
 
 Name: da-mkdeps-wheezy
 Method: http://buildbot.dovetail-automata.com/mkdeps-repo
@@ -45,7 +45,7 @@ Components: main
 Architectures: amd64 i386 armhf source
 VerifyRelease: 5AF7C5195919DAEB
 DownloadListsAs: .gz
-GetInRelease: no
+GetInRelease: yes
 
 ####################################################
 # Jessie RT_PREEMPT kernel from backports snapshot
@@ -57,7 +57,7 @@ Components: main
 Architectures: amd64 i386 source
 VerifyRelease: 7638D0442B90D010
 DownloadListsAs: .gz
-GetInRelease: no
+GetInRelease: yes
 FilterFormula:
   package (== linux-headers-4.1.0-0.bpo.1-common-rt) |
   package (== linux-headers-4.1.0-0.bpo.1-rt-amd64) | package (== linux-headers-4.1.0-0.bpo.1-rt-686-pae) |
