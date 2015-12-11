@@ -38,10 +38,5 @@ VerifyRelease: 7638D0442B90D010
 DownloadListsAs: .gz
 GetInRelease: yes
 FilterFormula:
-  package (== linux-headers-4.1.0-0.bpo.1-common-rt) |
-  package (== linux-headers-4.1.0-0.bpo.1-rt-amd64) | package (== linux-headers-4.1.0-0.bpo.1-rt-686-pae) |
-  package (== linux-image-4.1.0-0.bpo.1-rt-amd64) | package (== linux-image-4.1.0-0.bpo.1-rt-686-pae) |
-  package (== linux-image-4.1.0-0.bpo.1-rt-amd64-dbg) | package (== linux-image-4.1.0-0.bpo.1-rt-686-pae-dbg) |
-  package (== linux-headers-rt-amd64) | package (== linux-headers-rt-686-pae) |
-  package (== linux-image-rt-amd64) | package (== linux-image-rt-686-pae) |
-  package (== linux-image-rt-amd64-dbg) | package (== linux-image-rt-686-pae-dbg)
+  package (% linux-headers-*-rt*) | package (% linux-image-*-rt-*) |
+  package (% linux-headers-rt-*) | package (% linux-image-rt-*)
