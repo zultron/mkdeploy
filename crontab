@@ -2,6 +2,7 @@
 # minutes
 SCRIPT=mkdeploy/run.sh
 LOG=aptrepo/log/repo-update.log
+QUIET=-q
 MAILTO=""
 
-0-59/5 * * * * $HOME/$SCRIPT repo -U -q >> $HOME/$LOG 2>&1
+0-59/5 * * * * $HOME/$SCRIPT repo -U $QUIET >> $HOME/$LOG 2>&1
