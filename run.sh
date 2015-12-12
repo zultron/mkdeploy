@@ -70,9 +70,6 @@ init() {
     else
 	# Run inside container
 
-	# Fix repo directory ownership
-	chown aptrepo:aptrepo /opt/mkdeploy/repo
-
 	# Create log directory for supervisord, rsyslogd, apache2
 	mkdir -p /opt/mkdeploy/log
 	chown aptrepo:aptrepo /opt/mkdeploy/log
@@ -98,7 +95,10 @@ init() {
 	# Set up repo directory
 	if ! test -d /opt/mkdeploy/repo; then
 	    install -d -o aptrepo -g aptrepo -m 755 /opt/mkdeploy/repo
+	else
+	    chown aptrepo:aptrepo /opt/mkdeploy/repo
 	fi
+	cp /opt/mkdeploy/scripts/index.html /opt/mkdeploy/repo
 	su aptrepo -c "${SCRIPTSDIR}/get-ppa.sh -c all -i"
     fi
 }
