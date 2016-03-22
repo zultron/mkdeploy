@@ -2,8 +2,10 @@
 
 # Repo configuration
 CODENAMES="wheezy jessie"
-WHEEZY_MANUAL_UPDATES="da-mkdeps"
-JESSIE_MANUAL_UPDATES="da-mkdeps jessie-linux-rt"
+# WHEEZY_MANUAL_UPDATES="da-mkdeps"
+# JESSIE_MANUAL_UPDATES="da-mkdeps jessie-linux-rt"
+WHEEZY_MANUAL_UPDATES=""
+JESSIE_MANUAL_UPDATES="jessie-linux-rt"
 
 ####################################################
 # Utility functions
