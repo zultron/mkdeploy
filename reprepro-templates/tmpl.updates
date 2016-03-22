@@ -38,5 +38,6 @@ VerifyRelease: 7638D0442B90D010
 DownloadListsAs: .gz
 GetInRelease: yes
 FilterFormula:
-  package (% linux-headers-*-rt*) | package (% linux-image-*-rt-*) |
-  package (% linux-headers-rt-*) | package (% linux-image-rt-*)
+  package (% linux-headers-*-rt*) | package (% linux-image-*-rt-*)
+  | package (% linux-headers-rt-*) | package (% linux-image-rt-*)
+  | package (% linux-kbuild-*)
